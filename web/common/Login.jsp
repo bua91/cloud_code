@@ -1,16 +1,16 @@
 <%-- 
     Document   : Login
     Created on : Sep 14, 2017, 3:52:39 PM
-    Author     : john.southerland
+    Author     : C2
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <html> 
     <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <title>JSP Page</title> 
+        <title>Robocode Login</title> 
     </head> 
     <body> 
-        <h1>Login Page</h1> 
+        <h1>Robocode Login Page</h1> 
     <center> 
         <h2>Signup Details</h2> 
         <form action="LoginCheck.jsp" method="post"> 
