@@ -9,7 +9,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit Robot</title>
+<title>View Robot</title>
+ 
 <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,97 +27,35 @@
 <link
 	href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
-<style>
-        #RobotCode { 
-                position: absolute;
-                top: 175px;
-                right: 0;
-                bottom: 0;
-                left: 0;
-            }
-    </style>
 </head>
 
 <body>
-<%@include file="includes/header.jsp" %>
-<!--  <body id="page-top" class="index">
-	<!-- /.container-fluid  </nav> -->
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<script type="text/javascript">
-	function Open(){
-		window.open("Edit_Robot.jsp",null,
-		"height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
- 	}
-	</script>
-	<div class="dropdown">
 
-		<!-- trigger button -->
+<%@include file="includes/header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>Edit Robot</h1>
+	<br>
+	<!-- <div class="dropdown">
+
+		trigger button 
 		<button>File</button>
 
-		<!-- dropdown menu -->
+		<!-- dropdown menu
 		<ul class="dropdown-menu">
-			<li onclick="Open()"><a href="#open">Open</a></li>
-			<li onclick="SaveRobot();"><a href="#save">Save</a></li>
+			<li onclick="New()"><a href="#open">New Robot</a></li>
+			<li onclick="Edit()"><a href="#open">Edit Robot</a></li>
+			<li onclick="View()"><a href="#open">View Robot</a></li>
+		
 		</ul>
 
-	</div>
-	<div class="dropdown">
-		<button>Edit</button>
-
-		<!-- dropdown menu -->
-		<ul class="dropdown-menu">
-			<li><a href="#Undo">Undo</a></li>
-			<li><a href="#Redo">Redo</a></li>
-			<li><a href="#Copy">Copy</a></li>
-			<li><a href="#Paste">Paste</a></li>
-			<li><a href="#Find">Find</a></li>
-			<li><a href="#SelectAll">Select All</a></li>
-		</ul>
-	</div>
-
-	<script type="text/javascript">
-						
-		function Compile() {
-			var x =editor.getValue();
-			var y = document.getElementById("displayrobots").value;
-			var z = document.getElementById("package").value;
-			$.ajax({
-				url : 'compileservlet',
-				type : 'POST',
-				data : "RobotCode=" + y +"blah" + z,
-				async : false,
-				success : function(html) {
-					editor.getSession().setValue(html);
-					console.log(html);
-					 $("#message").fadeIn(200);
-	    				document.getElementById('message').innerHTML = 'Successfully compiled';
-	    				setTimeout(fade_out, 5000);
-				}
-			});
-			event.preventDefault();
-		}
-	</script>
-	<div class="dropdown">
-		<button>Compiler</button>
-		<ul class="dropdown-menu">
-			<li id="compileButton" onclick="Compile();"><a href="#">Compile</a></li>
-			<li><a href="#">Options</a></li>
-		</ul>
-	</div>
-
-	<div class="dropdown">
-		<button>Help</button>
-	</div>
-
+	</div>-->
+	<br><br>
 	<!-- /.row -->
-	
 	<div class="row">
 		<div class="col-lg-6">
 		<form method="post" action="editservlet">
@@ -128,6 +67,7 @@
 							Set<String> list_of_robots = new HashSet<String>();
 							HashMap<String, List<String>> map = new HashMap<String, List<String>>();
 							HashMap<String, List<String>> domain_robot_map = new HashMap<String, List<String>>();							
+							//	String name = "Esther";
 								try {
 									String connectionURL = "jdbc:mysql://localhost:3306/robocode";
 									Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -239,14 +179,14 @@
 							    
 								   var x = document.getElementById("domain_name").value;
 							       	 var y = document.getElementById("package").value;
+							       	console.log("Hi");
 							            $.ajax({
 							    			url : "editservlet",
 							    			data: "domain_name="+x+"-"+y+"-"+value,
 							    			type : 'POST',
 							    			async : false,
 							    			success : function(html) {
-							    				editor.getSession().setValue(html);
-							    				//$("#RobotCode").html(html);
+							    				$("#RobotCode").html(html);
 							    				console.log(html);
 							    			}
 							    		});
@@ -258,6 +198,7 @@
 						<select name="displayrobots" id="displayrobots" onchange="RobotNames(this.value);"
 							class="form-control" >
 							<option>Select Robot</option>
+							
 						</select>
 
 						<%
@@ -269,71 +210,46 @@
 
 					</div>
 				</div>
-				<script type="text/javascript">
-				var fade_out = function() {
-					  $("#message").fadeOut().empty();
-					}
-				</script>
-			</form>
-			<div id="message">
-			 Edit Robot Here
-			</div>
-			  
-			 <div id="RobotCode">
-       
-    </div>
 
-    <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        var editor = ace.edit("RobotCode");
-        editor.setTheme("ace/theme/clouds");
-        editor.getSession().setMode("ace/mode/java");
-    </script>
-			<!--  <form >
+
+			</form>
+			<form ><!-- action="updateRobot" method="post"> -->
 				<div class="form-group" id="RobotCodeh"
 					style="position: absolute; top: 150px; left: 15px;">
-					<textarea style="display: block;" name="editor" id="RobotCode"
+					<textarea  style="display: block;" name="editor" id="RobotCode"
 						rows="16" cols="100">
 					</textarea>
-				</div>-->
+					<button onclick="SaveRobot()">Save</button>
+				</div>
 				<div>
-				 <br><br><br><br><br><br>  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<script type="text/javascript">
 				 function SaveRobot(){
 				
-			        	 var x = editor.getValue();
+			        	 var x = document.getElementById("RobotCode").value;
 			            $.ajax({
 			                url: 'updateRobot',
 			                type: 'POST',
 			                data: "RobotCode="+x,
 			                async : false,
 			                success : function(html) {
-			                	editor.getSession().setValue(html);
+			    				$("#RobotCode").html(html);
 			    				console.log(html);
-			    				 $("#message").fadeIn(200);
-			    				document.getElementById('message').innerHTML = 'Successfully updated';
-			    				setTimeout(fade_out, 5000);
+			    				$('<div id="alert">Successfully Updated</div>').appendTo(document.body);
 			                }
 			            });  
 			        	event.preventDefault();
 			        	}
 				 </script>
-				<!--  <button type="submit" class="btn btn-success" id="saveButton" onclick="SaveRobot();">Save</button>-->
+				<!-- <a href="welcome.jsp">Done</a>-->
+				<input type="button" style="height:50px;width:70px" value="Done" onclick="window.location='welcome.jsp'" >
+				
 				</div>
-			
-			<%String message = (String) request.getAttribute("message"); 
-			
-			if(message != null) {
-				%>
-				<%=message %>
-				<%} %> 
-	
+			</form>
+						
 
 		</div>
 		<!-- /.col-lg-6 (nested) -->
 	</div>
-
-
-
 </body>
 </html>
