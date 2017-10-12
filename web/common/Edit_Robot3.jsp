@@ -219,7 +219,7 @@
 					<textarea  style="display: block;" name="editor" id="RobotCode"
 						rows="16" cols="100">
 					</textarea>
-					<button onclick="SaveRobot()">Save</button>
+					<button style="background-color:lightgreen; color:white; height:50px; width:100px" onclick="SaveRobot()">Save</button>
 				</div>
 				<div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
