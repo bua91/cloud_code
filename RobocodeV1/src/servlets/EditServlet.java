@@ -82,7 +82,7 @@ public class EditServlet extends HttpServlet {
 		robotid=robotid.trim();
 		session.setAttribute("tenant_name", userid);
 		RobotDTO robotAccessDTO = new RobotDTO();
-		robotAccessDTO.setUserId("User");
+		robotAccessDTO.setUserId("abc");
 		robotAccessDTO.setRobotName(robotid);
 		robotAccessDTO.setPackageId(packageid);
 

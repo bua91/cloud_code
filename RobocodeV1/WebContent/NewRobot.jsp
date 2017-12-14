@@ -39,6 +39,8 @@
 
 <body>
 <%@include file="includes/header.jsp" %>
+<% String uName = "123";
+		 uName = (String)session.getAttribute("username");%>
 <body>
 	<!--  <div class="container">
 		<div id="page-wrapper">
@@ -97,8 +99,8 @@
 		}	
 		</script>	<br><br><h1>New Robot</h1><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;<label>Select User</label>
-						<select name="domain_name" id="domain_name" class="form-control" onchange="getDomains()"
-							>
+						<!--<select name="domain_name" id="domain_name" class="form-control" onchange="getDomains()"
+							>-->
 							<option>Select User</option>
 
 							<%
@@ -144,9 +146,9 @@
 								}
 							session.setAttribute("tenantMap", map);
 							session.setAttribute("DomainMap", domain_robot_map);
-							session.setAttribute("userx", "User");
+							//session.setAttribute("userx", "User");
 								%>
-						</select> <br /> 
+						</select> <br />
 						<script type="text/javascript">
 		function getRobots() {
 
@@ -167,8 +169,8 @@
 			});
 		}	
 		</script>		&nbsp;&nbsp;&nbsp;&nbsp;<label>Select Package</label>
-						<select name="package" id="package" class="form-control"
-							onchange="getRobots()" >
+						<!--<select name="package" id="package" class="form-control"
+							onchange="getRobots()" >-->
 							
 							<option>Select Package</option>
 						
@@ -189,6 +191,7 @@
 						</div>
 						</div>
 						<br>
+
 						<script type="text/javascript">
 				 function NewRobot(){
 						var robotPackage=document.getElementById("package").value;

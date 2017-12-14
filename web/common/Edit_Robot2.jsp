@@ -44,6 +44,7 @@ function onloadPage(){
 }
 </script>
 <%@include file="includes/header.jsp" %>
+
 <!--  <body id="page-top" class="index">
 	<!-- /.container-fluid  </nav> -->
 	<br>

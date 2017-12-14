@@ -76,16 +76,19 @@ public class EditServlet extends HttpServlet {
 		}
 		System.out.println(selectedItem);
 		String[] words = selectedItem.split("-");
-		String userid =words[0];
+String uName=null;
+uName = (String)session.getAttribute("username");
+		String userid =uName;
 		String packageid = words[1];
 		String robotid = words[2];
 		robotid=robotid.trim();
 		session.setAttribute("tenant_name", userid);
 		RobotDTO robotAccessDTO = new RobotDTO();
-		robotAccessDTO.setUserId("User");
+
+		robotAccessDTO.setUserId(uName);
 		robotAccessDTO.setRobotName(robotid);
 		robotAccessDTO.setPackageId(packageid);
-
+String func= null;
 
 		//List<String> robotList = RobotDAO.getRobotList(robotAccessDTO);
 
@@ -100,7 +103,16 @@ public class EditServlet extends HttpServlet {
 
 		//	System.out.println("Hi");
 			Statement statement = (Statement) conn.createStatement();
-			String newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"' and userID = '"+userid+"'";
+String newstmt = null;
+func = (String)session.getAttribute("function");
+			if(func.equals("edit")){
+			 newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'and userID = '"+userid+"'";
+}else{
+ newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'";
+}
+
+			//String newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'";
+//' and userID = '"+userid+"'";
 			System.out.println(newstmt);
 			resultSet = statement.executeQuery(newstmt);
 			//System.out.println("swxwxdedx");

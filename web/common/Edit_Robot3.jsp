@@ -30,8 +30,16 @@
 </head>
 
 <body>
+<span><% String check =null;
+check= (String)session.getAttribute("username");
+if(check == null )
+response.sendRedirect("Login.jsp");
+String uRole  =null;
+uRole= (String)session.getAttribute("userrole");
+if(uRole.equals("Tester")){response.sendRedirect("accessdenied.jsp");}
+session.setAttribute("function","edit");%>
+<%@include file="includes/header.jsp" %></span>
 
-<%@include file="includes/header.jsp" %>
 	<br>
 	<br>
 	<br>

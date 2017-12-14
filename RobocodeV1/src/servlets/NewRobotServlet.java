@@ -83,7 +83,10 @@ public class NewRobotServlet extends HttpServlet {
 		System.out.println(words[0] +" "+words[1]);
 		String robotPackage =words[0];
 		String name = words[1];
-		String user = words[2];
+String uName = "123";
+		 uName =(String) session.getAttribute("username");
+
+		String user = uName;
 		name=name.trim();
 		session.setAttribute("roboName",name);
 		request.setAttribute("roboName",name);
@@ -179,7 +182,7 @@ public class NewRobotServlet extends HttpServlet {
 			statement.setString(1, robotDTO.getCreatedDate());
 			statement.setString(4, robotName);
 			statement.setString(3, packageName);
-			statement.setString(5, user);
+			statement.setString(5, "xyz");
 			statement.setString(2, robotCode);
 			statement.setString(7, "Y");
 			statement.setString(6, "C:/robocode/robots/"+packageName+"/"+robotName+".java");

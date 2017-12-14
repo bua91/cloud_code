@@ -32,6 +32,7 @@
 </head>
 <body>
 <%@include file="includes/header.jsp" %>
+
 	<!-- /.container-fluid  </nav>-->
 	<!-- Header -->
 	<header>
@@ -42,6 +43,10 @@
 					alt="">
 				<div class="intro-text">
 					<span class="name">Welcome to Robocode!</span>
+<span><% String check =null;
+check= (String)session.getAttribute("username");
+if(check == null )
+response.sendRedirect("Login.jsp");%></span>
 					<hr class="star-light">
 					<span class="skills">Build the best, destroy the rest!</span>
 				</div>

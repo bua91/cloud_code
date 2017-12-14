@@ -96,7 +96,9 @@ public class UpdateRobotServlet extends HttpServlet {
 		/*File file=new File(robotDTO.getRobotName()+".java");
 		PrintWriter out2=new PrintWriter(file);
 		out2.println(RobotCode);
-		FileInputStream inputStream = new FileInputStream(file);*/
+		FileInputStream inputStream = new FileInputStream(file);
+String uName= 'abc';
+uName = session.getAttribute("username");*/
 		try {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			//System.out.println(robotDTO.getPackageId()+" "+robotDTO.getRobotId());

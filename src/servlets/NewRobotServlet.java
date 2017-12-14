@@ -83,7 +83,11 @@ public class NewRobotServlet extends HttpServlet {
 		System.out.println(words[0] +" "+words[1]);
 		String robotPackage =words[0];
 		String name = words[1];
-		String user = words[2];
+String uName = "123";
+		 uName = (String)session.getAttribute("username");
+
+		//String uName = session.getAttribute("username");
+		String user = uName;
 		name=name.trim();
 		session.setAttribute("roboName",name);
 		request.setAttribute("roboName",name);

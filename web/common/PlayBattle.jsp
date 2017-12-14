@@ -10,6 +10,10 @@
 	ResultSet resultset = null;
 %>
 <title>New Battle</title>
+<span><% String check =null;
+check= (String)session.getAttribute("username");
+if(check == null )
+response.sendRedirect("Login.jsp");%></span>
 <%@include file="includes/header.jsp"%>
 <script src="http://code.jquery.com/jquery.min.js"></script>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>

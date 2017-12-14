@@ -30,6 +30,10 @@
 </head>
 
 <body>
+<span><% String check =null;
+check= (String)session.getAttribute("username");
+if(check == null )
+response.sendRedirect("Login.jsp");%></span>
 
 <%@include file="includes/header.jsp" %>
 	<br>

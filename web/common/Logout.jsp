@@ -12,7 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% session.removeAttribute("username"); session.removeAttribute("password"); session.invalidate(); %> 
+        <% session.setAttribute("username",null); session.removeAttribute("password"); session.invalidate(); %> 
+
         <h1>Logout was done successfully.</h1> 
         <a href="Login.jsp">Click here to return to the login screen</a>
     </body>

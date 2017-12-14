@@ -32,6 +32,10 @@
 <body>
 
 <%@include file="includes/header.jsp" %>
+<%String check =null;
+check= (String)session.getAttribute("username");
+session.setAttribute("function","view");%>
+
 	<br>
 	<br>
 	<br>
@@ -69,15 +73,15 @@
 							HashMap<String, List<String>> domain_robot_map = new HashMap<String, List<String>>();							
 							//	String name = "Esther";
 								try {
+									
 									String connectionURL = "jdbc:mysql://localhost:3306/robocode";
 									Class.forName("com.mysql.jdbc.Driver").newInstance();
 									Connection connection = DriverManager.getConnection(connectionURL, "root",
 											"root");
 
 									Statement statement = connection.createStatement();
-									String selectString="SELECT userID, packageID, robotID from robot";
-									resultset = statement
-											.executeQuery(selectString);
+									String selectString="SELECT userID, packageID, robotID from robot ";
+									resultset = statement.executeQuery(selectString);
 									
 											%>
 <script type="text/javascript">
@@ -170,7 +174,7 @@
 						<select name="package" id="package" class="form-control"
 							onchange="getRobots()" >
 							<option>Select Package</option>
-						
+							    			//data: "domain_name="+x+"-"+y+"-"+value,						
 								
 						</select> <br /> 
 						<script type="text/javascript">

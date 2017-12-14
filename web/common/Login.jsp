@@ -62,12 +62,16 @@
         	<br/>
         	<h2>REGISTER</h2>
         	<form action="UserRegister.jsp" method="post">
-            	<input type="text" name="username" placeholder="username"> 
+		<input type="text" name="name" placeholder="name">
+		<br/><input type="text" name="username" placeholder="username"> 
             	<br/><input type="password" name="password" placeholder="Password">
             	<br/><input type="password" name="confirm_password" placeholder="Confirm password">
             	<br/><input type="text" name="email" placeholder="email id">
+		<br/><input type="text" name="role" placeholder="role">
             	<br/><input type="submit" value="Submit">
+
         	</form>
+        	
         </div>
     </body> 
 </html>
