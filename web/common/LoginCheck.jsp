@@ -41,10 +41,13 @@
                
         if(enteredUsername.equals(UserName) && enteredPassword.equals(Password))
             {
-	
             session.setAttribute("username",enteredUsername);
 	    session.setAttribute("userrole",UserRole);
-            response.sendRedirect("welcome.jsp");
+	    if (enteredUsername.equals("admin")){
+	    	response.sendRedirect("AdminPage.jsp");
+	    else {
+            	response.sendRedirect("welcome.jsp");
+	    }
             }
         else
             response.sendRedirect("Error.jsp");
