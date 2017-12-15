@@ -27,12 +27,12 @@
 %>
 	<center>
 		<h2>User List</h2>
-		<select>
+		<form action="changeRole.jsp" method="post">
+		<select name= "user">
 			<%  while(resultset.next()){ %>
 			<option><%= resultset.getString(4)%></option>
 			<%}%>
 		</select>
-		<form action="changeRole.jsp" method="post">
 		<br/><input type="text" name="userrole" placeholder="userrole">
                 <br/><input type="submit" value="Change Role">
 		</form>

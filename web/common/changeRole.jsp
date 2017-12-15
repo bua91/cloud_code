@@ -10,7 +10,8 @@
 	<title>Role change Page</title>
 </head>
 <body>
-	<% 
+	<%
+	   String user = request.getParameter("user");
 	   String user_role= request.getParameter("userrole");
 	   try {
 	   String connectionURL = "jdbc:mysql://localhost:3306/robocode";
