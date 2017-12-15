@@ -23,7 +23,7 @@
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	Connection connection = DriverManager.getConnection(connectionURL, "root","root");
         Statement statement = connection.createStatement();
-        resultset = statement.executeQuery(select * from User);
+        resultset = statement.executeQuery("select * from User");
 %>
 	<center>
 		<h2>User List</h2>
@@ -32,8 +32,14 @@
 			<option><%= resultset.getString(4)%></option>
 			<%}%>
 		</select>
+		<form action="changeRole.jsp" method="post">
 		<br/><input type="text" name="userrole" placeholder="userrole">
-		<br/><input type="submit" value="ChangeRole">
-		<br/><br/><br/><br/><input type = "submit" value= "Go to welcome page">
+                <br/><input type="submit" value="Change Role">
+		</form>
+		<br><br><br><br><br><input type="button" style="height:50px;width:200px" value="Welcome page" onclick="window.location='welcome.jsp'">
 	</center>
+	<script>
+		function change_role(){
+			
+	</script>
 </body>
