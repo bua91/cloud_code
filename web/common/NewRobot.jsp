@@ -39,6 +39,11 @@
 
 <body>
 <%@include file="includes/header.jsp" %>
+<% String uRole  =null;
+	uRole= (String)session.getAttribute("userrole");
+	if(uRole.equals("Player")||uRole.equals("Tester")){
+		response.sendRedirect("accessdenied.jsp");
+	}%>
 <body>
 	<!--  <div class="container">
 		<div id="page-wrapper">

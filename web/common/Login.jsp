@@ -67,7 +67,13 @@
             	<br/><input type="password" name="password" placeholder="Password">
             	<br/><input type="password" name="confirm_password" placeholder="Confirm password">
             	<br/><input type="text" name="email" placeholder="email id">
-		<br/><input type="text" name="role" placeholder="role">
+		<br/><p>Role<p>
+		<select name= "role">
+			<option>Developer</option>
+			<option>Tester</option>
+			<option>Player</option>
+			<option>Admin</option>
+		</select>
             	<br/><input type="submit" value="Submit">
 
         	</form>

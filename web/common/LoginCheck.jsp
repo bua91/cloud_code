@@ -1,6 +1,8 @@
 <%@page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.*"%>
+<%@page import="java.security.MessageDigest"%>
+<%@page import="java.security.NoSuchAlgorithmException"%>
 <%
 	ResultSet resultset = null;
 %>
@@ -10,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+
         <%
         String enteredUsername=request.getParameter("username");
         String enteredPassword=request.getParameter("password");
@@ -25,9 +28,8 @@
 				String selectString="SELECT ID,UserName, Password, Role from User where UserName='"+enteredUsername+"'";
 				
 			 resultset = statement.executeQuery(selectString);
-	}
-	catch (Exception ex) { 
-				 response.sendRedirect("Viewrobot.jsp");
+	}catch (Exception ex) { 
+				 response.sendRedirect("Error.jsp");
 				} 
 					
 		if(resultset.next()){
@@ -36,6 +38,10 @@
 			Password = resultset.getString("Password");
             int ID= resultset.getInt("ID");
 		}
+	else{
+	response.sendRedirect("accessdenied.jsp");
+	}
+
        
        
                
@@ -44,8 +50,13 @@
 	
             session.setAttribute("username",enteredUsername);
 	    session.setAttribute("userrole",UserRole);
+	    if (enteredUsername.equals("admin")){
+		response.sendRedirect("AdminPage.jsp");
+	    }
+	    else {
             response.sendRedirect("welcome.jsp");
             }
+	  }
         else
             response.sendRedirect("Error.jsp");
         %>

@@ -32,10 +32,16 @@
 <body>
 <span><% String check =null;
 check= (String)session.getAttribute("username");
+session.setAttribute("function", "view");
 if(check == null )
 response.sendRedirect("Login.jsp");%></span>
 
 <%@include file="includes/header.jsp" %>
+<% String uRole  =null;
+	uRole= (String)session.getAttribute("userrole");
+	if(uRole.equals("Player")){
+		response.sendRedirect("accessdenied.jsp");
+	}%>
 	<br>
 	<br>
 	<br>
@@ -180,7 +186,10 @@ response.sendRedirect("Login.jsp");%></span>
 						<script type="text/javascript">
 							function RobotNames(value)
 							{
-							    
+
+							     document.getElementById("share").value=value;
+								var r = document.getElementById("share").value;
+								//alert(r);
 								   var x = document.getElementById("domain_name").value;
 							       	 var y = document.getElementById("package").value;
 							       	console.log("Hi");
@@ -254,5 +263,12 @@ response.sendRedirect("Login.jsp");%></span>
 		</div>
 		<!-- /.col-lg-6 (nested) -->
 	</div>
+<form action="ShareRevoke.jsp" method="post">
+<!--input type = "hidden" name="displayrobots" value = "displayrobots"-->
+<input type="hidden" id="share" name="share">
+  <input type="submit" style="height:50px;width:25px" value="Share/Revoke Code" >
+</form> 
+
+
 </body>
 </html>
