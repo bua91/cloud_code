@@ -9,11 +9,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin user</title>
 	<style>
+		body {
+        		background-image: url("http://robocode.sourceforge.net/home/robocode_logo_white.jpg");
+			background-repeat: no-repeat;
+			background-position: 0 0;
+			background-size: cover;
+			color: blue;
+       		}
 		h2 { color : black;
 		     text-align:centre;
 		     font-family: sans-serif;
 		     font-size: 30px;
 		   }
+		input {
+        		display: block;
+        		width: 320px;
+        		height: 40px;
+        		padding: 5px;
+        		font-size: 20px;
+        		font-family : sans-serif;
+        		color: blue;
+        		outline: none;
+        		border: 1px solid rgba(0,0,0,0.3);
+        		border-radius: 5px;
+        		margin-bottom: 2px;
+        	}
 	</style>
 
 </head>
@@ -33,13 +53,15 @@
 			<option><%= resultset.getString(4)%></option>
 			<%}%>
 		</select>
-		<br/><input type="text" name="userrole" placeholder="userrole">
-                <br/><input type="submit" value="Change Role">
+                <br/><h2>Role<h2>
+                <select name= "userrole">
+                        <option>Developer</option>
+                        <option>Tester</option>
+                        <option>Player</option>
+                </select>
+		<!--<br/><input type="text" name="userrole" placeholder="userrole">-->
+		<br/><input type="submit" value="ChangeRole">
 		</form>
-		<br><br><br><br><br><input type="button" style="height:50px;width:200px" value="Welcome page" onclick="window.location='welcome.jsp'">
+		<br><br><br><input type="button" style="height:50px;width:200px" value="Logout" onclick="window.location='Logout.jsp'" >
 	</center>
-	<script>
-		function change_role(){
-			
-	</script>
 </body>

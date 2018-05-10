@@ -24,6 +24,9 @@
 	   catch (Exception se){
 	   	se.printStackTrace();
 	   }
+	   response.sendRedirect("AdminPage.jsp");
 	%>
+<h2><%=user%> and <%=user_role%></h2>
 </body>
 </html>
+

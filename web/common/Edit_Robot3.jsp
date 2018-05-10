@@ -31,13 +31,13 @@
 
 <body>
 <span><% String check =null;
-check= (String)session.getAttribute("username");
-if(check == null )
-response.sendRedirect("Login.jsp");
-String uRole  =null;
-uRole= (String)session.getAttribute("userrole");
-if(uRole.equals("Tester")){response.sendRedirect("accessdenied.jsp");}
-session.setAttribute("function","edit");%>
+	check= (String)session.getAttribute("username");
+	if(check == null )
+		response.sendRedirect("Login.jsp");
+	String uRole  =null;
+	uRole= (String)session.getAttribute("userrole");
+	if(uRole.equals("Tester") || uRole.equals("Player")){response.sendRedirect("accessdenied.jsp");}
+	session.setAttribute("function","edit");%>
 <%@include file="includes/header.jsp" %></span>
 
 	<br>
@@ -221,6 +221,7 @@ session.setAttribute("function","edit");%>
 
 
 			</form>
+			
 			<form ><!-- action="updateRobot" method="post"> -->
 				<div class="form-group" id="RobotCodeh"
 					style="position: absolute; top: 150px; left: 15px;">
@@ -228,8 +229,10 @@ session.setAttribute("function","edit");%>
 						rows="16" cols="100">
 					</textarea>
 					<button style="background-color:lightgreen; color:white; height:50px; width:100px" onclick="SaveRobot()">Save</button>
-				</div>
-				<div>
+				
+				
+			</div>
+							<div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<script type="text/javascript">
 				 function SaveRobot(){
@@ -249,6 +252,7 @@ session.setAttribute("function","edit");%>
 			        	event.preventDefault();
 			        	}
 				 </script>
+			
 				<!-- <a href="welcome.jsp">Done</a>-->
 				<input type="button" style="height:50px;width:70px" value="Done" onclick="window.location='welcome.jsp'" >
 				
@@ -258,6 +262,8 @@ session.setAttribute("function","edit");%>
 
 		</div>
 		<!-- /.col-lg-6 (nested) -->
+
 	</div>
+
 </body>
 </html>
