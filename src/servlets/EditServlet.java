@@ -76,19 +76,22 @@ public class EditServlet extends HttpServlet {
 		}
 		System.out.println(selectedItem);
 		String[] words = selectedItem.split("-");
-String uName=null;
-uName = (String)session.getAttribute("username");
+		String uName=null;
+		uName = (String)session.getAttribute("username");
 		String userid =uName;
 		String packageid = words[1];
 		String robotid = words[2];
 		robotid=robotid.trim();
+String newstmt2=null;
+ResultSet resultset2 = null;
 		session.setAttribute("tenant_name", userid);
 		RobotDTO robotAccessDTO = new RobotDTO();
 
 		robotAccessDTO.setUserId(uName);
 		robotAccessDTO.setRobotName(robotid);
 		robotAccessDTO.setPackageId(packageid);
-String func= null;
+		
+		String func= null;
 
 		//List<String> robotList = RobotDAO.getRobotList(robotAccessDTO);
 
@@ -98,23 +101,28 @@ String func= null;
 		String user = "root";
 		String password = "root";
 		System.out.println("Hi");
+
 		try {
 			Connection conn = DriverManager.getConnection(url, user, password);
 
-		//	System.out.println("Hi");
+		
 			Statement statement = (Statement) conn.createStatement();
-String newstmt = null;
-func = (String)session.getAttribute("function");
-			if(func.equals("edit")){
-			 newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'and userID = '"+userid+"'";
-}else{
- newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'";
-}
+		String newstmt = null;
+		func = (String)session.getAttribute("function");
+			/*if(func.equals("edit")){
+				newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'and userID='"+userid+"'";
+				//newstmt2 = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'and  writeUser Like'"+"%"+uName+"%"+"'";
+		//session.setAttribute("function","view");
+			}else{*/
+
+ 				newstmt = "SELECT file,filepath,RobotCode,id,userID,writeUser from robot where robotID='"+robotid+"' and packageID='"+packageid+"'";
+			//}
 
 			//String newstmt = "SELECT file,filepath,RobotCode,id from robot where robotID='"+robotid+"' and packageID='"+packageid+"'";
 //' and userID = '"+userid+"'";
 			System.out.println(newstmt);
 			resultSet = statement.executeQuery(newstmt);
+
 			//System.out.println("swxwxdedx");
 			String Robocode = "";
 			//System.out.println("Hi");
@@ -136,9 +144,29 @@ func = (String)session.getAttribute("function");
 	
 			Robocode = new String(bytes);*/
 			//System.out.println("Robocode is "+Robocode);
-			while(resultSet.next()){
-				Robocode=resultSet.getString("RobotCode");
-				robotAccessDTO.setFilePath(resultSet.getString("filepath"));
+String editUser = null;
+String owner = null;
+
+			while(resultSet.next() ){
+				//if(resultSet.next()){
+				if(func.equals("edit")){
+					owner = resultSet.getString("userID");
+					editUser = resultSet.getString("writeUser");
+					if(userid.equals(owner) || editUser.contains(userid)){
+						Robocode=resultSet.getString("RobotCode");
+						robotAccessDTO.setFilePath(resultSet.getString("filepath"));
+					}
+					
+				
+				}else{
+					Robocode=resultSet.getString("RobotCode");
+					robotAccessDTO.setFilePath(resultSet.getString("filepath"));
+
+				}
+					
+	
+				//}
+				
 			}
 			session.setAttribute("RobObj", robotAccessDTO);
 			//System.out.println("Robocode blah:"+Robocode);
@@ -150,6 +178,7 @@ func = (String)session.getAttribute("function");
 		}
 		catch (Exception e) {
 			 e.printStackTrace();
+response.sendRedirect("accessdenied.jsp");
 		}
 	}		
 	static String readFile(String path, Charset encoding) 
